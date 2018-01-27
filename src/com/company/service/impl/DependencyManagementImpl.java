@@ -6,16 +6,22 @@ import com.company.service.DependencyManagement;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class DependencyManagementImpl implements DependencyManagement{
+
+    private ExecutorService executorService;
 
     private static DependencyManagementImpl instance;
     private List<Dependency> dependencies;
 
     private DependencyManagementImpl() {
         dependencies = new ArrayList<>();
+        executorService = Executors.newSingleThreadExecutor();
     }
 
     public static synchronized DependencyManagementImpl getInstance() {
@@ -26,13 +32,13 @@ public class DependencyManagementImpl implements DependencyManagement{
     }
 
     @Override
-    public boolean insertDependency(Dependency dependency) {
-        return dependencyIsValid(dependency) && dependencies.add(dependency);
+    public Future<Boolean> insertDependency(Dependency dependency) {
+        return executorService.submit(() -> dependencyIsValid(dependency) && dependencies.add(dependency));
     }
 
     @Override
-    public boolean mayDelete(Asset asset) {
-        return assetExists(asset) && !hasParent(asset);
+    public Future<Boolean> mayDelete(Asset asset) {
+        return executorService.submit(() -> assetExists(asset) && !hasParent(asset));
     }
 
     private boolean dependencyIsValid(Dependency dependency) {
