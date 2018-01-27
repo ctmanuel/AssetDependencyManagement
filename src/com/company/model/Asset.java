@@ -1,5 +1,10 @@
 package com.company.model;
 
+/**
+ * Asset Model Object
+ *<P>Model representing the Asset Class. Includes id </P>
+ *
+ */
 public class Asset {
     private String id;
 

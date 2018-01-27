@@ -12,6 +12,11 @@ import java.util.concurrent.Future;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+/**
+ * Dependency Management Implementation.
+ * Singleton use class designed to manage the dependencies between Assets.
+ *
+ */
 public class DependencyManagementImpl implements DependencyManagement{
 
     private ExecutorService executorService;

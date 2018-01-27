@@ -1,5 +1,11 @@
 package com.company.model;
 
+/**
+ * Dependency Model Object
+ * <P>Model representing the Dependency class.
+ * Holds the fromAsset model and toAsset model.
+ * </P>
+ */
 public class Dependency {
     private Asset fromAsset;
     private Asset toAsset;
