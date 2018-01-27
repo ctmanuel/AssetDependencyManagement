@@ -16,3 +16,5 @@ If the dependency cannot be added then it will display "Cannot add dependency: [
 does not have any other assets depending on it. Will display the result.
 
 [exit]: exit the program
+
+![alt text](https://github.com/ctmanuel/AssetDependencyManagement/blob/master/usage.PNG)
